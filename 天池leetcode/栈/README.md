@@ -50,6 +50,71 @@
 #### 删除元素（出栈，退栈）
 先判断堆栈是否为空，为空直接抛出异常。如果堆栈不为空，则先让self.top向左移动 1 位，然后再删除当前堆栈元素
 
+### 栈的顺序存储实现代码
+```python
+class Stack:
+    # 初始化空栈
+    def __init__(self, size = 100):
+        self.stack = []
+        self.size = size
+        self.top = -1
+
+    # 判断栈是否为空
+    def is_empty(self):
+        return self.top == -1
+
+    # 判断栈是否已满
+    def is_full(self):
+        return self.top + 1 == self.size
+
+    # 入栈操作
+    def push(self, value):
+        if self.is_full():
+            raise Exception('Stack is full')
+        else:
+            self.stack.append(value)
+            self.top += 1
+
+    # 出栈操作
+    def pop(self):
+        if self.is_empty():
+            raise Exception('Stack is empty')
+        else:
+            self.top -= 1
+            self.stack.pop()
+
+    # 获取栈顶元素
+    def peek(self):
+        if self.is_empty():
+            raise Exception('Stack is empty')
+        else:
+            return self.stack(self.top)
+```
+## 栈的链式存储
+堆栈的顺序存储结构保留着顺序存储分配空间的固有缺陷，即在栈满或者其他需要重新调整存储空间时需要移动大量元素。为此，堆栈可以使用链式存储方式来实现。在python中我们通过构造链表节点 Node 的方式来实现。这种采用链式存储结构的堆栈也被称为链式栈。
+
+### 栈的顺序存储基本描述
+我们约定 self.top 指向栈顶元素所在节点
+
+#### 初始化空栈
+使用链表创造一个空栈，并令栈顶元素指针 self.top 指向 None ,即 self.top = None
+
+#### 判断栈是否为空
+当 self.top == None 时，说明堆栈为空，返回True，否则返回False
+
+#### 判断栈是否已满
+
+
+#### 获取栈顶元素
+先判断堆栈是否为空，为空直接抛出异常。不为空返回 self.top 指向的栈顶节点值，即 self.top.value.
+
+#### 插入元素（进栈，入栈）
+创建值为value的链表节点，插入到链表头节点之前，并令栈顶指针 self.top 指向新的头节点
+
+#### 删除元素（出栈，退栈）
+先判断队列是否为空，为空直接抛出异常。如果堆栈不为空，则令 self.top 链表移动1位，并返回 self.top.value。
+
+//15.40
 
 
 
