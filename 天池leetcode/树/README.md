@@ -53,10 +53,232 @@ class ListNode:
 
 如果n为奇数，则每个非叶子节点都有两个子节点；如果n为偶数，则第n/2个节点必为非叶子节点，且它只有左子结点而无右子节点，其余非叶子节点都有两个子节点
 
+#### 二叉搜索树(BST) 
+二叉搜索树要么是空树， 要么同时满足以下条件：
+1. 左子树所有节点的关键字均小于根节点的关键字
+2. 右子树所有节点的关键字均大于根节点的关键字
+3. 左右子树也均为二叉搜索树
 
+二叉搜索树经典的应用场景就是存放有序数据，提升查找效率
+
+用同一个有序序列，可以构造出多个不同的二叉搜索树
+
+#### 平衡二叉树(AVL)
+如果二叉树中每个节点的左右子树高度差都不大于1，则这棵二叉树就是平衡二叉树
+
+平衡二叉树经典的应用场景就是与二叉搜索树结合，形成平衡二叉搜索树。在构建二叉搜索树的同时借助调整策略使每个节点的左右子树高度差都不大于1，保证二叉搜素树中每个节点的左右子树都规模相当，整个树看起来更加“ 匀称“
+
+# 树的基本操作
+## 树的存储结构
+### 顺序存储结构
+| # | val | parent | children |
+|---|-----|--------|----------|
+| 0 | A   |  -1    |          |
+| 1 | B   |   0    |          |
+
+### 链式存储结构
+```python
+class Node:
+    def __init__(self, val = None, children = None):
+        self.val = val
+        self.chhildren = children if children is not None else []
+    
+```
+### 树的~~增删改查~~(查查查查)
+查找/搜索/遍历是树的核心操作
+
+遍历，按照某种规则" 访问" 树中的每个节点，保证每个节点都会被" 访问" 到且每个节点只会被" 访问" 一次
+
+" 访问" ： 程序与节点产生交互或者在节点进行某些操作
+
+" 进入" ： 程序来到了某个节点， 并未与该节点产生任何交互
+
+不同规则下， 对同一个节点的“ 进入“ 次数可能有一次也可能有多次， 但对同一个节点的“ 访问" 只会发生一次
+
+#### 二叉树的深度优先搜索(DFS)
+在" 进入" 节点时有以下约定俗成的要求，
+- 必须以根节点为搜索起始节点并" 进入"
+- 优先" 进入" 当前节点的左子节点， 其次“ 进入“ 当前节点的右子节点
+- 如果当前节点为空节点或者左右子节点都被" 进入" 过， 则再次" 进入' 父节点
+
+" 进入“ 序列：1,2,4,null,4,null,4,2,5,null,5,null,5,2,1,3,null,3,6,null,6,null,6,3,1
+
+```python
+def dfs(TreeNode root):
+    if not root: return # 当前节点为空，返回到父节点
+
+    # 第一次进入当前节点
+    dfs(root.left) # 优先进入左子节点
+    # 第二次进入当前节点
+    dfs(root.right) # 其次进入右子节点
+    # 第三次进入当前节点
+    return # 左右子节点全部进入过，返回到父节点
+```
+前中后序遍历
+```python
+# 先序遍历
+def dfs(TreeNode root):
+    if not root: return
+    print(root.val)  # 访问
+    dfs(root.left)
+    dfs(root.right)
+    return
+
+# 中序遍历
+def dfs(TreeNode root):
+    if not root: return
+    dfs(root.left)
+    print(root.val)  # 访问
+    dfs(root.right)
+    return
+
+# 后序遍历
+def dfs(TreeNode root):
+    if not root: return
+    dfs(root.left)
+    dfs(root.right)
+    print(root.val)  # 访问
+    return
+```
+
+#### 二叉树的广度优先搜索(BFS)
+从根节点开始，按层次从上到下，同层次内从左到右"访问"每一个节点也叫做层次遍历
+
+每个节点只会进入一次
+
+要实现二叉树的广度有限搜索，需要借助一个特殊的数据结构一一队列
+
+实现二叉树层次遍历的流程：
+1. 初始化空队，将根节点入队
+2. 当队列非空且队头元素非空时不断重复以下操作：
+
+    - 队头节点出队并设置为当前节点
+    - 对当前节点进行" 访问"
+    - 如果当前节点左子节点存在则将左子节点入队
+    - 如果当前节点右子节点存在则将右子节点入队
+
+```python
+# BFS
+def bfs(self, root: Optional[TreeNode]):
+    q = []    # 队列
+    q.append(root)  # 队列初始化
+    while len(q) and q[0]:
+        cur = q.pop(0)
+        print(cur.val) # 访问
+        if root.left:
+            q.append(root.left)
+        if root.right:
+            q.append(root.right)
+    return
+
+# 写法2
+def bfs(self, root: Optional[TreeNode]):
+    q = []    # 队列
+    q.append(root)  # 队列初始化
+    while len(q) and q[0]: # while内，for循环外负责控制层次级别操作
+        size = len(q) # 记录当前层中节点的总数
+        for i in range(size):  # for循环内部负责控制同一层内节点级别操作
+            cur = q.pop(0)
+            print(cur.val)  # 访问
+            if root.left:
+                q.append(root.left)
+            if root.right:
+                q.append(root.right)
+    return
+```
 
 # 例题解析
+## 二叉树的最大深度
+> 给定一个二叉树，找出其最大深度。
 
+> 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+
+> 说明: 叶子节点是指没有子节点的节点。
+
+> 示例：给定二叉树 [3,9,20,null,null,15,7]，返回它的最大深度 3 。
+
+### 思路
+```python
+class Solution:
+    def dfs(self, root: Optional[TreeNode]):
+        if not root:
+            return
+        self.dfs(root.left)
+        self.dfs(root.right)
+        return
+
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        self.dfs(root)
+```
+### 实现代码
+```pytohn
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def dfs(self, root: Optional[TreeNode], temp: int,ansL:int):
+        if not root:
+            self.ans = max(self.ans, temp)
+            return
+        temp = temp + 1
+        self.dfs(root.left, temp, self.ans)
+        self.dfs(root.right, temp, self.ans)
+        return
+
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        self.ans = 0
+        temp = 0
+        self.dfs(root, temp, self.ans)
+        return self.ans
+```
+//52.00补
+
+
+## 将有序数组转换为二叉搜索树
+> 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
+
+> 高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+
+### 示例1
+```
+输入：nums = [-10,-3,0,5,9]
+输出：[0,-3,9,-10,null,5]
+解释：[0,-10,5,null,-3,null,9] 也将被视为正确答案：
+```
+### 示例2
+```
+输入：nums = [1,3]
+输出：[3,1]
+解释：[1,3] 和 [3,1] 都是高度平衡二叉搜索树。
+```
+ **二叉搜索树的中序遍历必有序** 
+
+### 实现代码
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildBST(self, nums: List[int], lo: int, hi: int) -> TreeNode:
+        if lo > hi:
+            return None
+        mid = int(lo + (hi - lo) / 2)
+        root = TreeNode(nums[mid])
+        root.left = self.buildBST(nums, lo, mid-1)
+        root.right = self.buildBST(nums, mid+1, hi)
+        return root
+
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        lo, hi = 0, len(nums) - 1
+        ans = self.buildBST(nums, lo ,hi)
+        return ans
+```
 
 # 课后习题
 ## 二叉树的最小深度
