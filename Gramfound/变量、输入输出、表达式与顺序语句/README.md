@@ -2,7 +2,11 @@
 ## AcWing 1. A + B
 ## AcWing 608. 差
 ## AcWing 604. 圆的面积
+取小数用printf .nlf,精度基本上用doule(15-16位),float只有7-8位
+
 ## AcWing 606. 平均数
+两个数scanf("%lf%lf", &a, &b)
+
 ## AcWing 609. 工资
 ## AcWing 615. 油耗
 ## AcWing 616. 两点间的距离
