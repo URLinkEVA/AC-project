@@ -21,8 +21,20 @@ AcWing 671. DDD
 AcWing 662. 点的坐标
 
 AcWing 666. 三角形类型
-
+```cpp
+//三条边排序
+if(a<b) swap(a,b);
+if(a<c) swap(a,c);
+if(b<c) swap(b,c);
+```
 AcWing 668. 游戏时间2
+```cpp
+//分钟比较
+t1 = a*60 + b;
+t2 = c*60 + d;
+if(t2>t1) cout << "O JOGO DUROU " << (t2-t1)/60 << " HORA(S) E "<< (t2-t1)%60 <<" MINUTO(S)" << endl;
+else cout << "O JOGO DUROU "<< (24*60+t2-t1)/60 <<" HORA(S) E "<< (24*60+t2-t1)%60 <<" MINUTO(S)" << endl;
+```
 
 AcWing 672. 税
 
