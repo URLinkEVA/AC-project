@@ -74,7 +74,31 @@ AcWing 717. 简单斐波那契
 AcWing 722. 数字序列和它的和
 
 AcWing 725. 完全数
+```
+for(int i=1;i<=n;i++)cin>>a[i];
+    for(int i=1;i<=n;i++){
+        if(a[i]==6)cout<<"6 is perfect"<<endl;
+        if(a[i]==28)cout<<"28 is perfect"<<endl;
+        if(a[i]==496)cout<<"496 is perfect"<<endl;
+        if(a[i]==8128)cout<<"8128 is perfect"<<endl;
+        if(a[i]==33550336)cout<<"33550336 is perfect"<<endl;
+        if(a[i]!=6&&a[i]!=28&&a[i]!=496&&a[i]!=8128&&a[i]!=33550336)cout<<a[i]<<" is not perfect"<<endl;
+//骗分
+```
 
 AcWing 726. 质数
 
 AcWing 727. 菱形
+
+曼哈顿距离
+```
+//输出一圈菱形
+int cx = n / 2, cy = n / 2;
+for (int i = 0; i < n; i ++ )
+{
+    for (int j = 0; j < n; j ++ )
+        if (abs(i - cx) + abs(j - cy) == n / 2) cout << '*';
+        else cout << ' ';
+    cout << endl;
+}
+```
