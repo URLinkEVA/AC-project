@@ -1,10 +1,16 @@
 # 例题
 AcWing 760. 字符串长度
-
+```
+for (int i = 0; str[i] && str[i] != '\n'; i ++ ) len ++ ;
+```
 AcWing 761. 字符串中的数字个数
-
+```
+fgets(str, 110, stdin);
+```
 AcWing 763. 循环相克令
-
+```
+if(x == (y+1)%3) cout << "Player1" << endl;
+```
 AcWing 765. 字符串加空格
 
 AcWing 769. 替换字符
