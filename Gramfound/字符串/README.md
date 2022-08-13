@@ -16,12 +16,20 @@ AcWing 765. 字符串加空格
 AcWing 769. 替换字符
 
 AcWing 773. 字符串插入
+```
+//substr从第一个参数开始到第二个参数结束
+cout << str1.substr(0, p + 1) + str2 + str1.substr(p + 1) << endl;
+```
 
 AcWing 772. 只出现一次的字符
 
 
 # 习题
 AcWing 762. 字符串匹配
+```
+int cnt[26];
+cnt[a[i]-'a']++;
+```
 
 AcWing 768. 忽略大小写比较字符串大小
 
