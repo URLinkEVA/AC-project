@@ -34,6 +34,12 @@ cnt[a[i]-'a']++;
 AcWing 768. 忽略大小写比较字符串大小
 
 AcWing 766. 去掉多余的空格
+```
+//双指针
+int j = i;
+while(j < s.size() && s[j] == ' ') j++;
+i = j + 1;
+```
 
 AcWing 767. 信息加密
 
