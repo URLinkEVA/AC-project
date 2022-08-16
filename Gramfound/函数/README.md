@@ -4,6 +4,12 @@ AcWing 804. n 的阶乘
 AcWing 805. x和y的最大值
 
 AcWing 808. 最大公约数
+```
+int gcd(int a, int b)
+{
+    return b ? gcd(b, a % b) : a;
+}
+```
 
 AcWing 811. 交换数值
 
