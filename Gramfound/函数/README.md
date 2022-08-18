@@ -30,9 +30,14 @@ AcWing 806. 两个数的和
 AcWing 807. 区间求和
 
 AcWing 809. 最小公倍数
-
+```
+for (int i = 1; i <= a * b; i ++ )
+    if(i%a==0&&i%b==0) return i;
+```
 AcWing 814. 复制数组
-
+```
+memcpy(b, a, size * 4);
+```
 AcWing 815. 打印字符串
 
 AcWing 816. 数组翻转
