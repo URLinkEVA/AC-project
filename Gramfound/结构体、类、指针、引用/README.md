@@ -9,6 +9,40 @@ int Fibonacci(int n) {
 ```
 AcWing 16. 替换空格
 
+```
+// 线性扫描
+class Solution {
+public:
+    string replaceSpaces(string &str) {
+        string res;
+        for (int i = 0; str[i]; i ++ ) // for (auto x : str)更方便
+        {
+            if(str[i] == ' ') res += "%20";
+            else res += str[i];
+        }
+        return res;
+    }
+};
+```
+```
+// 双指针
+class Solution {
+public:
+    string replaceSpaces(string &str) {
+        string res;
+        for (int i = 0; str[i]; i ++ )
+        {
+            int j = i;
+            while(j < str.size() && str[j] != ' ') j++;
+            res += str.substr(i, j - i);
+            if(j < str.size()) res += "%20";
+            i = j;
+        }
+        return res;
+    }
+};
+```
+
 AcWing 84. 求1+2+…+n
 
 AcWing 28. 在O(1)时间删除链表结点
