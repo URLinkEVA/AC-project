@@ -1,6 +1,12 @@
 # 例题
 AcWing 21. 斐波那契数列
-
+```
+//通项公式
+int Fibonacci(int n) {
+        double c1 = (1.0 + sqrt(5)) / 2, c2 = (1.0 - sqrt(5)) / 2;
+        return (int)((pow(c1, n) - pow(c2, n)) / sqrt(5));
+    }
+```
 AcWing 16. 替换空格
 
 AcWing 84. 求1+2+…+n
