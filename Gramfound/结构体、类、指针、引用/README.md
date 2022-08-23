@@ -119,8 +119,45 @@ public:
 
 # 习题
 ## AcWing 78. 左旋转字符串
-
+```
+class Solution {
+public:
+    string leftRotateString(string str, int n) {
+        return str.substr(n) + str.substr(0, n);
+    }
+};
+```
 ## AcWing 87. 把字符串转换成整数
+```
+class Solution {
+public:
+    int strToInt(string str) {
+        int i = 0;
+        while(i < str.size() && str[i] == ' ') i++;
+        long long res = 0;
+        
+        int sign = 1;
+        if(i < str.size())
+        {
+            if(str[i] == '-') sign = -1, i++;
+            else if (str[i] == '+') i++;
+        }
+        
+        while(i < str.size() && str[i] >= '0' && str[i] <= '9')
+        {
+            res = res * 10 + str[i] - '0';
+            if (res > 1e11) break;
+            i ++ ;
+        }
+        
+        res *= sign;
+        if (res > INT_MAX) res = INT_MAX;
+        if (res < INT_MIN) res = INT_MIN;
+
+        return res;
+    }
+};
+```
 
 ## AcWing 35. 反转链表
 
