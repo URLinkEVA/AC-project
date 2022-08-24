@@ -200,5 +200,57 @@ public:
 ```
 
 ## AcWing 66. 两个链表的第一个公共结点
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *findFirstCommonNode(ListNode *headA, ListNode *headB) {
+        auto p = headA, q = headB;
+        while(p != q)
+        {
+            if(p) p = p->next;
+            else p = headB;
+            if(q) q = q->next;
+            else q = headA;
+        }
+        return p;
+    }
+};
+```
 
 ## AcWing 29. 删除链表中重复的节点
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* deleteDuplication(ListNode* head) {
+        auto dum = new ListNode(-1);
+        dum->next = head;
+        
+        auto p = dum;
+        while(p->next)
+        {
+            auto q = p->next;
+            while(q && p->next->val == q->val) q = q->next;
+            
+            if (p->next->next == q) p = p->next;
+            else p->next = q;
+        }
+        return dum->next;
+    }
+};
+```
