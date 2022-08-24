@@ -160,6 +160,44 @@ public:
 ```
 
 ## AcWing 35. 反转链表
+```
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if(!head || !head->next) return head;
+        auto p= head, q = head->next;
+        while(q)
+        {
+            auto o = q->next;
+            q->next = p;
+            p = q;
+            q = o;
+        }
+        head->next = NULL;
+        return p;
+    }
+};
+```
+### 翻转链表
+https://leetcode.cn/problems/make-two-arrays-equal-by-reversing-sub-arrays/
+```
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        sort(target.begin(), target.end());
+        sort(arr.begin(), arr.end());
+        return target == arr;
+    }
+};
+```
 
 ## AcWing 66. 两个链表的第一个公共结点
 
