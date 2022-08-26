@@ -13,10 +13,90 @@ public:
 };
 ```
 ## AcWing 68. 0到n-1中缺失的数字
+```
+class Solution {
+public:
+    int getMissingNumber(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        int l = 0, r = nums.size() - 1;
+        while(l < r)
+        {
+            int mid = l + r >> 1;
+            if(nums[mid] != mid) r = mid;
+            else l = mid + 1;
+        }
+        
+        if(nums[r] == r) r++;
+        return r;
+    }
+};
+```
 
 ## AcWing 32. 调整数组顺序使奇数位于偶数前面
+```
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+         int l =0, r = array.size() - 1;
+         while(l < r)
+         {
+             while(l < r && array[l]%2 == 1) l++;
+             while(l < r && array[r]%2 == 0) r--;
+             swap(array[l], array[r]);
+         }
+    }
+};
+```
 
 ## AcWing 17. 从尾到头打印链表
+```
+// 法一：reverse 答案数组. 时间:O(n);空间:O(n). 4ms; 8.5MB
+class Solution {
+public:
+    vector<int> printListReversingly(ListNode* head) {
+        vector<int> res;
+        while (head) {
+            res.push_back(head->val);
+            head = head->next;
+        }
+        // reverse(res.begin(), res.end());
+        // return res;
+        return vector<int>(res.rbegin(), res.rend());
+    }
+};
+
+// 法二：递归. 时间:O(n);空间:栈空间O(n). 4ms; 10.8MB
+class Solution {
+public:
+    vector<int> printListReversingly(ListNode* head) {
+        if (!head) return {};
+        auto res = printListReversingly(head->next);
+        res.push_back(head->val);
+        return res;
+    }
+};
+
+// 法三：辅助栈法. 时间:O(n);空间:O(n). 4ms; 8.5MB
+class Solution {
+public:
+    vector<int> printListReversingly(ListNode* head) {
+        stack<int> s;
+        while (head) {
+            s.push(head->val); // 存的是 val
+            head = head->next;
+        }
+
+        int n = s.size();
+        vector<int> res(n);
+        for (int i = 0; i < n; i ++ ) {
+            res[i] = s.top();
+            s.pop();
+        }
+
+        return res;
+    }
+};
+```
 
 ## AcWing 20. 用两个栈实现队列
 
