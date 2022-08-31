@@ -42,10 +42,68 @@ i = j + 1;
 ```
 
 AcWing 767. 信息加密
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    string s;
+    getline(cin ,s);
+    for(auto &c : s)
+    {
+        if(c >= 'a' && c <= 'z') c = (c - 'a' + 1)%26 + 'a';
+        else if(c >= 'A' && c <= 'Z') c = (c - 'A' + 1)%26 + 'A';
+    }
+    cout << s << endl;
+    return 0;
+}
+```
 
 AcWing 764. 输出字符串
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    string a, b;
+    getline(cin ,a);
+    for(int i = 0; i < a.size(); i++) b += (a[i] + a[(i+1)% a.size()]);
+    cout << b << endl;
+    return 0;
+}
+```
 
 AcWing 770. 单词替换
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <sstream>
+
+using namespace std;
+
+int main()
+{
+    string s, a, b;
+    getline(cin, s);
+    cin >> a >> b;
+    stringstream ssin(s);
+    string str;
+    while(ssin >> str)
+        if(str == a) cout << b << ' ';
+        else cout << str << ' ';
+    
+    return 0;
+}
+```
 
 AcWing 771. 字符串中最长的连续出现的字符
 
