@@ -161,6 +161,25 @@ int main()
 ```
 
 AcWing 775. 倒排单词
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+const int N = 110;
+
+int main()
+{
+    string str[N];
+    int n = 0;
+    while(cin >> str[n]) n++;
+    for(int i = n - 1; i >= 0; i--) cout << str[i] << ' ';
+    cout << endl;
+    return 0;
+}
+```
 
 AcWing 776. 字符串移位包含问题
 
