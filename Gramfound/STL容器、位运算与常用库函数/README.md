@@ -31,6 +31,17 @@ public:
     }
 };
 ```
+```
+class Solution {
+public:
+    int getMissingNumber(vector<int>& nums) {
+        unordered_set<int> S;
+        for(int i = 0; i <= nums.size(); i++) S.insert(i);
+        for(auto x : nums) S.erase(x);
+        return *S.begin();
+    }
+};
+```
 ### 补充说明
 l + r >> 1 是比特操作，可以看作除2
 
