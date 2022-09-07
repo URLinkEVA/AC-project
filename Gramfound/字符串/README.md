@@ -182,7 +182,40 @@ int main()
 ```
 
 AcWing 776. 字符串移位包含问题
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
 
+using namespace std;
+
+int main()
+{
+    string str1, str2;
+    cin >> str1 >> str2;
+    if(str1.size() < str2.size()) swap(str1, str2);
+    for (int i = 0; i < str1.size(); i ++ )
+    {
+        str1 = str1.substr(1) + str1[0];
+        for (int j = 0; j + str2.size() <= str1.size() ; j ++ )
+        {
+            int k = 0;
+            for(; k < str2.size(); k++)
+            {
+                if(str1[j + k] != str2[k])
+                    break;
+            }
+            if(k == str2.size())
+            {
+                cout << "true";
+                return 0;
+            }
+        }
+    }
+    cout << "false";
+    return 0;
+}
+```
 AcWing 777. 字符串乘方
 
 AcWing 778. 字符串最大跨距
