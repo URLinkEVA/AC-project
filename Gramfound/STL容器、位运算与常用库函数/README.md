@@ -199,6 +199,33 @@ public:
 ```
 
 ## AcWing 75. 和为S的两个数字
+```
+class Solution {
+public:
+    vector<int> findNumbersWithSum(vector<int>& nums, int target) {
+        unordered_set<int> S;
+        for(auto x: nums)
+        {
+            if(S.count(target - x)) return {x, target - x};
+            S.insert(x);
+        }
+    }
+};
+```
+```
+class Solution {
+public:
+    vector<int> findNumbersWithSum(vector<int>& nums, int target) {
+        unordered_map<int, int> hash;
+        for(auto x : nums)
+        {
+            if(hash[target - x] == 0) hash[x]++;
+            else return {x, target - x};
+        }
+        return {};
+    }
+};
+```
 
 ## AcWing 51. 数字排列
 
