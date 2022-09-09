@@ -175,6 +175,28 @@ public:
 ```
 # 习题
 ## AcWing 53. 最小的k个数
+```
+class Solution {
+public:
+    vector<int> getLeastNumbers_Solution(vector<int> input, int k) {
+        sort(input.begin(), input.end());
+        vector<int> res;
+        for (int i = 0; i < k; i ++ ) res.push_back(input[i]);
+        return res;
+    }
+};
+```
+
+```
+class Solution {
+public:
+    vector<int> getLeastNumbers_Solution(vector<int> input, int k) {
+        sort(input.begin(), input.end());
+        input.resize(k);
+        return input;
+    }
+};
+```
 
 ## AcWing 75. 和为S的两个数字
 
