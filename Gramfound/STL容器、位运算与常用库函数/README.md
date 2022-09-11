@@ -228,7 +228,22 @@ public:
 ```
 
 ## AcWing 51. 数字排列
+```
+class Solution {
+public:
+    vector<vector<int>> permutation(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        do res.push_back(nums);
+        while(next_permutation(nums.begin(), nums.end())); //调用的库函数，从小到大排
 
+        return res;
+    }
+};
+```
+```
+state >> i & 1 //判断第i位是否为1
+```
 ## AcWing 26. 二进制中1的个数
 
 ## AcWing 862. 三元组排序
