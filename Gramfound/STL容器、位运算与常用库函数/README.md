@@ -245,5 +245,33 @@ public:
 state >> i & 1 //判断第i位是否为1
 ```
 ## AcWing 26. 二进制中1的个数
+```
+class Solution {
+public:
+    int NumberOf1(int n) {
+        int res = 0;
+        for(int i = 0; i < 32; i++)
+            if(n >> i & 1) res++;
+            
+        return res;
+    }
+};
+```
 
 ## AcWing 862. 三元组排序
+```
+class Solution {
+public:
+    int NumberOf1(int n) {
+        int res = 0;
+        for(int i = 0; i < 32; i++)
+            if(n >> i & 1) res++;
+            
+        return res;
+    }
+};
+```
+```
+// lowbit写法
+while (n) n -= n & -n, res ++ ;
+```
