@@ -254,5 +254,109 @@ int main()
 ```
 
 AcWing 778. 字符串最大跨距
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    string s1, s2, s3;
+    char c;
+    while(cin >> c, c != ',') s1 += c;
+    while(cin >> c, c != ',') s2 += c;
+    while(cin >> c) s3 += c;
+    
+    if(s1.size() < s2.size() || s1.size() < s3.size()) cout << "-1" << endl;
+    else 
+    {
+        int l = 0;
+        while(l + s2.size() <= s1.size())
+        {
+            int k = 0;
+            while(k < s2.size())
+            {
+                if(s1[l + k] != s2[k]) break;
+                k++;
+            }
+            if (k == s2.size()) break;
+            l ++ ;
+        }
+        
+        int r = s1.size() - s3.size();
+        while (r >= 0)
+        {
+            int k = 0;
+            while (k < s3.size())
+            {
+                if (s1[r + k] != s3[k]) break;
+                k ++ ;
+            }
+            if (k == s3.size()) break;
+            r -- ;
+        }
+
+        l += s2.size() - 1;
+
+        if (l >= r) cout << "-1" << endl;
+        else cout << r - l - 1 << endl;
+    }
+    return 0;
+}
+```
 
 AcWing 779. 最长公共字符串后缀
+```
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+const int N = 210;
+
+int n;
+string str[N];
+
+int main()
+{
+    while (cin >> n, n)
+    {
+        int len = 1000;
+        for (int i = 0; i < n; i ++ )
+        {
+            cin >> str[i];
+            if (len > str[i].size()) len = str[i].size();
+        }
+
+        while (len)
+        {
+            bool success = true;
+            for (int i = 1; i < n; i ++ )
+            {
+                bool is_same = true;
+                for (int j = 1; j <= len; j ++ )
+                    if (str[0][str[0].size() - j] != str[i][str[i].size() - j])
+                    {
+                        is_same = false;
+                        break;
+                    }
+                if (!is_same)
+                {
+                    success = false;
+                    break;
+                }
+            }
+
+            if (success) break;
+            len -- ;
+        }
+
+        cout << str[0].substr(str[0].size() - len) << endl;
+    }
+
+    return 0;
+}
+```
