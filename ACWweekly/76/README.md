@@ -26,6 +26,23 @@ int main()
 ```
 
 # AcWing 4714. 数对
+所有字符数量平方的相加
+```
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+typedef long long LL;
+unordered_map <char,int> mp;
+int main () {
+    char ch;
+    while (cin >> ch) mp[ch]++;
+    LL ans = 0;
+    for (char i = 'a';i <= 'z';i++) ans += (LL)mp[i] * mp[i];
+    for (char i = '0';i <= '9';i++) ans += (LL)mp[i] * mp[i];
+    cout << ans << endl;
+    return 0;
+}
+```
 
 # AcWing 4715. 构造数组
 ## 思路1并查集+图论
