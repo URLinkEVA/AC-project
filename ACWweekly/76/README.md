@@ -71,3 +71,7 @@ int main() {
     return 0;
 }
 ```
+### tips
+'std::ios::sync_with_stdio(false);'在c++中之所以cin，cout效率低，是因为先把要输出的东西存入缓冲区，再输出，导致效率降低，而这段语句可以来打消iostream的输入和输出缓存，可节省时间，使效率与scanf与printf相差无几。
+
+'cin.tie(nullptr);'在默认的情况下cin绑定的是cout，每次执行 << 操作符的时候都要调用flush，这样会增加IO负担。可以通过tie(0)（0表示NULL）来解除cin与cout的绑定，进一步加快执行效率。
